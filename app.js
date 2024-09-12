@@ -8,6 +8,7 @@ import { Transcription } from './transcription.js';
 import { fileURLToPath } from 'url';
 import { Completion } from './completion.js';
 import logger from "node-color-log";
+import * as fs from 'fs';
 
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -19,6 +20,13 @@ const port = process.env.TOKEN_SERVER_PORT;
 
 app.listen(port, () => {
     logger.info(`API server running on ${port}...`);
+    
+    var dir = './uploads';
+    if (!fs.existsSync(dir)){
+        logger.warn("Uploads folder not found, creating...");
+        logger.info("Creating uploads folder...");
+        fs.mkdirSync(dir);
+    }
 });
 
 /**
