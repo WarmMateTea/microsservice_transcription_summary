@@ -3,6 +3,7 @@ import {config} from "dotenv";
 config();
 const openai = new OpenAi();
 import {sist_sumario} from "./sys-prompts.js";
+import logger from "node-color-log";
 
 async function Completion(text) {
     try {
@@ -18,11 +19,12 @@ async function Completion(text) {
             ]
         });
 
-        console.log(completion.choices[0].message.content);
+        //console.log(completion.choices[0].message.content);
         return completion.choices[0].message.content;
 
     } catch (err) {
-        console.log(err);
+        //console.log(err);
+        logger.error(err);
         throw(err);
     }
 }

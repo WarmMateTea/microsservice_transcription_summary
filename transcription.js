@@ -26,7 +26,7 @@ async function Transcription(filePath) {
             if (err) {
                 logger.error(err);
             } else {
-                logger.warn(`File ${filePath} deleted successfully.`);
+                logger.success(`File ${filePath} deleted successfully.`);
             }
         });
     }

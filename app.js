@@ -72,12 +72,14 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
     Transcription(filePath)
         .then((result) => {
-            logger.warn("Transcription success!");
-            logger.debug("Transcrição: " + result);
+            logger.success("Transcription success!");
+            logger.debug("Transcrição:");
+            logger.debug("'" + result + "'");
 
             Completion(result).then((result) => {
-                logger.warn("Summarization success!");
-                logger.debug("Sumário: " + result);
+                logger.success("Summarization success!");
+                logger.debug("Sumário gerado:");
+                logger.debug("'" + result + "'");
                 return res.status(200).json({result});
 
             }).catch((err) => {
